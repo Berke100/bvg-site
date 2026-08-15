@@ -1,18 +1,13 @@
 # Marka dosyaları
 
 ## Logo
-`bvg-logo.png` dosyasını bu klasöre koy — header'daki `Logo` bileşeni
-(`src/components/logo.tsx`) otomatik olarak bunu gösterir. Dosya yokken
-(404) coin işareti + "BVG" kelime markası placeholder'ı kalır (kırık
-görsel çıkmaz).
+`bvg-logo.png` — gerçek BVG logosu. header'daki `Logo` bileşeni
+(`src/components/logo.tsx`) bunu otomatik gösterir. Değiştirmek
+istersen aynı dosya adıyla üzerine yaz; dosya hiç yoksa (404) coin
+işareti + "BVG" kelime markası placeholder'ına düşer (kırık görsel
+çıkmaz).
 
-- Yatay/geniş logo önerilir, şeffaf arkaplan (`.png`).
-- `.svg` kullanacaksan dosya adını `bvg-logo.svg` yap ve
-  `src/components/logo.tsx` içindeki `src="/brand/bvg-logo.png"` satırını
-  buna göre güncelle.
-
-## Favicon
-`src/app/favicon.ico` hâlâ Next.js'in varsayılan ikonu. Gerçek logodan
-üretilen `.ico` dosyasını doğrudan `src/app/favicon.ico` yoluna
-kopyalayıp üzerine yaz — Next.js App Router dosya kuralı gereği bu
-otomatik algılanır, kod tarafında değişiklik gerekmez.
+Aynı görsel `src/app/icon.png` olarak da kopyalandı — Next.js App
+Router'ın `icon` dosya kuralı gereği favicon/sekme ikonu otomatik
+buradan üretilir. Logoyu güncellersen ikisini de (bu dosyayı ve
+`src/app/icon.png`'yi) aynı anda değiştir.

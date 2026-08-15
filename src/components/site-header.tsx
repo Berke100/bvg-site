@@ -11,6 +11,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
   // Scroll'da header'a hafif zemin ver
   useEffect(() => {
@@ -29,9 +30,10 @@ export function SiteHeader() {
   }, [open]);
 
   // Rota değişince mobil menüyü kapat
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   const isActive = (href: string) =>
     pathname === href || (href !== "/" && pathname.startsWith(href));

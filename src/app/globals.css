@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  BVG Tasarım Token Sistemi
+  Bitcoin esintili sarı-siyah/kahverengi palet.
+  Renkler proje talimatındaki referans değerlerdir.
+*/
+@theme {
+  /* Marka renkleri */
+  --color-bg: #0d0b08; /* Ana arkaplan (siyah/koyu kahve) */
+  --color-surface: #17110b; /* Kart yüzeyi (bg'den biraz açık) */
+  --color-surface-2: #4a2e1c; /* İkincil yüzey (koyu kahve) */
+  --color-gold: #f2b705; /* Ana vurgu (altın sarı) */
+  --color-amber: #c9860a; /* İkincil vurgu (amber) */
+  --color-cream: #f5e9d4; /* Metin (krem) */
+  --color-cream-dim: #b8ab94; /* Sönük metin (ikincil) */
+  --color-line: #2c2114; /* İnce kenarlıklar */
+
+  /* Tipografi — next/font değişkenleriyle beslenir */
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-manrope);
+
+  /* Yumuşak geçişler */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Temel katman */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-cream);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    /* İnce altın grenli bir dokusal zemin — sikke/madalyon hissi */
+    background-image:
+      radial-gradient(
+        ellipse 60% 50% at 50% -10%,
+        rgba(242, 183, 5, 0.08),
+        transparent 60%
+      );
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  /* Erişilebilirlik: klavye odak stili */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Seçim rengi */
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-bg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/*
+  İmza öğesi: "sikke kenarı" — coin/madalyon tırtıklı kenar.
+  Bölümler arası ince ayraç olarak kullanılır.
+*/
+@utility coin-edge {
+  height: 12px;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-amber) 0,
+    var(--color-amber) 2px,
+    transparent 2px,
+    transparent 7px
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  opacity: 0.55;
+}
+
+/* Altın degrade metin — vurgular için */
+@utility text-gold-gradient {
+  background: linear-gradient(120deg, var(--color-gold), var(--color-amber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Ölçülü giriş animasyonu (scroll ile) */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: bvg-reveal 0.7s var(--ease-out-soft) forwards;
+}
+
+@keyframes bvg-reveal {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Azaltılmış hareket tercihi — animasyonları kapat */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

@@ -74,12 +74,12 @@ export const EVENTS: EventItem[] = [
   {
     slug: "spor-zirvesi",
     title: "Spor Zirvesi",
-    meta: "Konuşmacı: Göktuğ Alaf",
+    meta: "Konuşmacılar: Göktuğ Alaf & Koray Girgin",
     tag: "Öne çıkan",
     featured: true,
     image: "/events/spor-zirvesi.webp",
     description:
-      "Alanında güçlü bir ismi kampüse getirdiğimiz, salonu dolduran zirvemiz. Göktuğ Alaf ile ilham veren bir buluşma.",
+      "1000'den fazla katılımcıyla salonu dolduran zirvemiz. Göktuğ Alaf ve Koray Girgin'in konuk olduğu ilham verici bir buluşma.",
   },
   {
     slug: "tanisma-etkinligi",

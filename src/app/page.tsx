@@ -42,12 +42,17 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={120}>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream-dim">
-                  Bölüm fark etmez. Spor Zirvesi&apos;nde konuğumuz{" "}
+                  Bölüm fark etmez. Spor Zirvesi&apos;nde konuklarımız{" "}
                   <strong className="font-semibold text-cream">
                     Göktuğ Alaf
                   </strong>{" "}
-                  ile salonu doldurduk. BVG, seni doğru insanlarla, gerçek
-                  fırsatlarla buluşturan topluluk.
+                  ve{" "}
+                  <strong className="font-semibold text-cream">
+                    Koray Girgin
+                  </strong>{" "}
+                  ile 1000&apos;den fazla katılımcıyı bir araya getirdik. BVG,
+                  seni doğru insanlarla, gerçek fırsatlarla buluşturan
+                  topluluk.
                 </p>
               </Reveal>
               <Reveal delay={180}>
@@ -67,17 +72,17 @@ export default function HomePage() {
               {/* Foto: public/hero/spor-zirvesi.jpg konunca otomatik görünür */}
               <Photo
                 src={HERO_IMAGE}
-                alt="Spor Zirvesi — konuşmacı Göktuğ Alaf"
-                label="Spor Zirvesi — Göktuğ Alaf"
+                alt="Spor Zirvesi — konuşmacılar Göktuğ Alaf & Koray Girgin"
+                label="Spor Zirvesi — Göktuğ Alaf & Koray Girgin"
                 ratio="aspect-[4/5]"
                 priority
               />
               <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-line bg-bg/90 px-5 py-4 backdrop-blur sm:block">
                 <div className="font-display text-2xl font-bold text-gold-gradient">
-                  Salon doldu
+                  1000+ katılımcı
                 </div>
                 <div className="text-xs text-cream-dim">
-                  Konuşmacı: Göktuğ Alaf
+                  Göktuğ Alaf & Koray Girgin
                 </div>
               </div>
             </Reveal>
@@ -92,7 +97,7 @@ export default function HomePage() {
           <div className="grid items-center gap-12 md:grid-cols-2">
             <Reveal>
               <SectionHeading kicker="Kanıtlanmış başarı" title="Sahada varız">
-                Son iki yıldır Türkiye&apos;nin en büyük teknoloji yarışmasında
+                Son üç yıldır Türkiye&apos;nin en büyük teknoloji yarışmasında
                 boy gösteriyor, kürsüye aday takımlar çıkarıyoruz. Bu, bir
                 topluluğun değil; ekip olabilmenin gücü.
               </SectionHeading>
@@ -110,7 +115,7 @@ export default function HomePage() {
                 <div className="relative grid grid-cols-2 gap-8">
                   <div>
                     <div className="font-display text-5xl font-bold text-gold-gradient">
-                      2 yıl
+                      3 yıl
                     </div>
                     <div className="mt-2 text-sm text-cream-dim">
                       Üst üste katılım

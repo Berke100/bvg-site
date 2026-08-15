@@ -12,7 +12,7 @@ import { ArrowRightIcon, TrophyIcon } from "@/components/icons";
 export const metadata: Metadata = {
   title: "Teknofest",
   description:
-    "Son iki yıldır Teknofest'te yer alıyor, 10+ finalist takım çıkarıyoruz. Takıma katıl.",
+    "Son üç yıldır Teknofest'te yer alıyor, 10+ finalist takım çıkarıyoruz. Takıma katıl.",
 };
 
 const STEPS = [
@@ -36,7 +36,7 @@ export default function TeknofestPage() {
       <PageHeader
         kicker="Teknofest"
         title="Fikirden finale"
-        description="Türkiye'nin en büyük teknoloji yarışmasında son iki yıldır sahadayız. Rekabetin en üst seviyesinde deneyim kazanan takımlar çıkarıyoruz."
+        description="Türkiye'nin en büyük teknoloji yarışmasında son üç yıldır sahadayız. Rekabetin en üst seviyesinde deneyim kazanan takımlar çıkarıyoruz."
       />
 
       <Container className="py-16 sm:py-20">
@@ -45,7 +45,7 @@ export default function TeknofestPage() {
           <Card className="relative overflow-hidden">
             <TrophyIcon className="absolute -right-8 -top-8 h-40 w-40 text-gold/10" />
             <div className="relative grid gap-8 sm:grid-cols-3">
-              <Stat value="2 yıl" label="Üst üste katılım" />
+              <Stat value="3 yıl" label="Üst üste katılım" />
               <Stat value="10+" label="Finalist takım" />
               <Stat value="∞" label="Kazanılan deneyim" />
             </div>

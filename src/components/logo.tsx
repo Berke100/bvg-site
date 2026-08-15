@@ -1,3 +1,8 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+
 /**
  * BVG logo işareti — coin/madalyon formunda basit bir SVG.
  * Tırtıklı sikke kenarı + ortada "B" harfi. Marka imzasının çekirdeği.
@@ -71,8 +76,34 @@ export function CoinMark({
   );
 }
 
-/** Yatay logo: coin işareti + "BVG" kelime markası */
+/**
+ * Yatay logo.
+ *
+ * Gerçek BVG logosu bekleniyor: dosyayı `public/brand/bvg-logo.png` (veya
+ * `.svg` ise buradaki yolu ve `<img>`/`next/image` kullanımını ona göre
+ * güncelle) olarak ekleyince otomatik görünür. Dosya yokken (404) `onError`
+ * devreye girip coin işareti + "BVG" kelime markası placeholder'ına düşer —
+ * bkz. public/brand/README.md.
+ */
 export function Logo({ className }: { className?: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (!failed) {
+    return (
+      <span className={`inline-flex items-center ${className ?? ""}`}>
+        <Image
+          src="/brand/bvg-logo.png"
+          alt="BVG"
+          width={140}
+          height={36}
+          priority
+          className="h-9 w-auto object-contain"
+          onError={() => setFailed(true)}
+        />
+      </span>
+    );
+  }
+
   return (
     <span className={`inline-flex items-center gap-2.5 ${className ?? ""}`}>
       <CoinMark className="h-9 w-9 shrink-0" />

@@ -1,29 +1,67 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import {
-  GOOGLE_FORM_EMBED_URL,
-  GOOGLE_FORM_HEIGHT,
-  SITE,
+  MEMBERSHIP_FORM_ACTION,
+  MEMBERSHIP_FORM_FIELDS,
+  SINIF_OPTIONS,
+  UNIVERSITE_OPTIONS,
 } from "@/lib/site";
-import { InstagramIcon, MailIcon } from "@/components/icons";
+
+type Status = "idle" | "submitting" | "success" | "error";
 
 /**
- * Üyelik başvuru formu — Google Forms embed sarmalayıcısı.
+ * Üyelik başvuru formu — site kendi tasarımıyla render eder.
  *
- * GOOGLE_FORM_EMBED_URL (lib/site.ts) doluysa: formu marka çerçevesiyle gömer.
- * Boşsa: "form yakında" yedek kartı + e-posta/Instagram alternatifi gösterir.
+ * Gönderimde doğrudan Google Form'un `formResponse` endpoint'ine POST
+ * atılır; yanıtlar aynı Google Sheet'e düşer. Google bu isteğe CORS izni
+ * vermediği için `no-cors` modda atılıyor — tarayıcı yanıtın içeriğini
+ * okuyamaz, bu yüzden network hatası olmadıkça gönderimi başarılı sayıyoruz.
  */
 export function MembershipEmbed() {
-  const [loaded, setLoaded] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
-  if (!GOOGLE_FORM_EMBED_URL) {
-    return <FormFallback />;
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const params = new URLSearchParams();
+    for (const [field, entry] of Object.entries(MEMBERSHIP_FORM_FIELDS)) {
+      params.set(entry, String(data.get(field) ?? ""));
+    }
+
+    try {
+      await fetch(MEMBERSHIP_FORM_ACTION, {
+        method: "POST",
+        mode: "no-cors",
+        body: params,
+      });
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="rounded-3xl border border-amber/40 bg-surface/40 p-10 text-center">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-amber/40 bg-bg text-2xl">
+          🎉
+        </div>
+        <h3 className="mt-5 text-2xl text-cream">Başvurun alındı</h3>
+        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-cream-dim">
+          Teşekkürler! Ekibimiz en kısa sürede seninle iletişime geçecek.
+        </p>
+      </div>
+    );
   }
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-amber/40 bg-cream shadow-[0_24px_70px_-28px_rgba(0,0,0,0.75)]">
-      {/* Marka başlık şeridi — açık formu siteyle bağlar */}
+    <div className="overflow-hidden rounded-3xl border border-amber/40 bg-surface/60 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.75)]">
+      {/* Marka başlık şeridi */}
       <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-gold to-amber px-6 py-4">
         <div>
           <div className="font-display text-lg font-bold leading-tight text-bg">
@@ -42,60 +80,95 @@ export function MembershipEmbed() {
       </div>
       <div className="coin-edge" aria-hidden />
 
-      {/* Formu saran açık zemin — beyaz Google formu kasıtlı bir kart gibi durur */}
-      <div className="relative bg-white p-1.5 sm:p-3">
-        {/* Form yüklenene kadar açık iskelet */}
-        {!loaded ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-white">
-            <span className="text-sm text-neutral-500">Form yükleniyor…</span>
-          </div>
+      <form onSubmit={handleSubmit} className="grid gap-4 p-6 sm:p-8">
+        <TextField label="Ad Soyad" name="adSoyad" required />
+        <TextField label="E-posta" name="email" type="email" required />
+        <TextField
+          label="Telefon numarası (0 ile başlasın)"
+          name="telefon"
+          type="tel"
+          required
+        />
+        <SelectField
+          label="Üniversite"
+          name="universite"
+          options={UNIVERSITE_OPTIONS}
+          required
+        />
+        <SelectField label="Sınıf" name="sinif" options={SINIF_OPTIONS} required />
+        <TextField label="Bölüm" name="bolum" required />
+
+        {status === "error" ? (
+          <p className="text-sm text-red-400">
+            Bir şeyler ters gitti — bağlantını kontrol edip tekrar dener misin?
+          </p>
         ) : null}
-        <iframe
-          src={GOOGLE_FORM_EMBED_URL}
-          title="BVG üyelik başvuru formu"
-          onLoad={() => setLoaded(true)}
-          height={GOOGLE_FORM_HEIGHT}
-          className="w-full rounded-xl bg-white"
-          style={{ border: 0 }}
+
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="mt-2 inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-semibold text-bg transition-colors hover:bg-amber disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Yükleniyor…
-        </iframe>
-      </div>
+          {status === "submitting" ? "Gönderiliyor…" : "Başvuruyu Gönder"}
+        </button>
+      </form>
     </div>
   );
 }
 
-/** Form linki henüz girilmediğinde gösterilen yedek */
-function FormFallback() {
+function TextField({
+  label,
+  name,
+  type = "text",
+  required,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+}) {
   return (
-    <div className="rounded-3xl border border-amber/30 bg-surface/40 p-8 text-center">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-amber/40 bg-bg text-2xl">
-        📝
-      </div>
-      <h3 className="mt-5 text-2xl text-cream">Başvuru formu yakında burada</h3>
-      <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-cream-dim">
-        Formu hazırlıyoruz. O zamana kadar bize doğrudan Instagram&apos;dan
-        yazabilir ya da e-posta gönderebilirsin — seni memnuniyetle aramıza
-        alırız.
-      </p>
-      <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a
-          href={SITE.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-bg transition-colors hover:bg-amber"
-        >
-          <InstagramIcon className="h-4 w-4" />
-          Instagram&apos;dan yaz
-        </a>
-        <a
-          href={`mailto:${SITE.email}?subject=BVG%20Üyelik%20Başvurusu`}
-          className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-semibold text-cream transition-colors hover:border-gold/60 hover:text-gold"
-        >
-          <MailIcon className="h-4 w-4" />
-          E-posta gönder
-        </a>
-      </div>
-    </div>
+    <label className="block text-sm">
+      <span className="text-cream-dim">{label}</span>
+      <input
+        type={type}
+        name={name}
+        required={required}
+        className="mt-1.5 w-full rounded-xl border border-line bg-bg px-4 py-2.5 text-cream outline-none transition-colors focus:border-gold/60"
+      />
+    </label>
+  );
+}
+
+function SelectField({
+  label,
+  name,
+  options,
+  required,
+}: {
+  label: string;
+  name: string;
+  options: readonly string[];
+  required?: boolean;
+}) {
+  return (
+    <label className="block text-sm">
+      <span className="text-cream-dim">{label}</span>
+      <select
+        name={name}
+        required={required}
+        defaultValue=""
+        className="mt-1.5 w-full rounded-xl border border-line bg-bg px-4 py-2.5 text-cream outline-none transition-colors focus:border-gold/60"
+      >
+        <option value="" disabled>
+          Seç
+        </option>
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }

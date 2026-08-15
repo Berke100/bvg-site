@@ -14,21 +14,42 @@ export const SITE = {
 } as const;
 
 /**
- * Üyelik başvuru formu — Google Forms embed.
+ * Üyelik başvuru formu — kendi tasarımımızla native form, gönderimde
+ * doğrudan Google Form'un `formResponse` endpoint'ine POST atılır. Yanıtlar
+ * aynı Google Sheet'e, gerçek Google Form'dan gelmiş gibi düşer.
  *
- * BURAYA GOOGLE FORM EMBED LİNKİNİ YAPIŞTIR:
- * Google Forms → formu aç → sağ üstteki "Gönder" (Send) → <> (embed) sekmesi
- * → oradaki iframe src'sini kopyala. Şuna benzer görünür:
- *   https://docs.google.com/forms/d/e/XXXXXXXXXXXX/viewform?embedded=true
- *
- * Boş bırakılırsa sitede "form yakında" bilgi kartı ve e-posta yedeği gösterilir.
- * Dolduğunda form otomatik olarak İletişim sayfasına gömülür — başka değişiklik gerekmez.
+ * Bu resmi/dokümante bir Google API'si değil — `entry.XXXXXXX` alan ID'leri
+ * formun canlı HTML'inden (FB_PUBLIC_LOAD_DATA_ değişkeni) çıkarıldı. Google
+ * formdaki alanları değiştirirse (ekleme/çıkarma/yeniden adlandırma) bu
+ * ID'lerin ve seçeneklerin yeniden çıkarılması gerekir — orijinal form:
+ * https://docs.google.com/forms/d/e/1FAIpQLScrHMFVI5EbZXWer4hxJTrQ2FOHVHLKbrOHVshAElCQNrtOnw/viewform
  */
-export const GOOGLE_FORM_EMBED_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLScrHMFVI5EbZXWer4hxJTrQ2FOHVHLKbrOHVshAElCQNrtOnw/viewform?embedded=true";
+export const MEMBERSHIP_FORM_ACTION =
+  "https://docs.google.com/forms/d/e/1FAIpQLScrHMFVI5EbZXWer4hxJTrQ2FOHVHLKbrOHVshAElCQNrtOnw/formResponse";
 
-// Embed iframe yüksekliği (px). Google'ın verdiği embed koduyla uyumlu.
-export const GOOGLE_FORM_HEIGHT = 1548;
+export const MEMBERSHIP_FORM_FIELDS = {
+  adSoyad: "entry.2005620554",
+  email: "entry.1045781291",
+  telefon: "entry.1065046570",
+  universite: "entry.1166974658",
+  sinif: "entry.839337160",
+  bolum: "entry.1429038858",
+} as const;
+
+export const UNIVERSITE_OPTIONS = [
+  "Sakarya Uygulamalı Bilimler Üniversitesi",
+  "Sakarya Üniversitesi",
+  "Diğer:",
+] as const;
+
+export const SINIF_OPTIONS = [
+  "Hazırlık",
+  "1. Sınıf",
+  "2. Sınıf",
+  "3. Sınıf",
+  "4. Sınıf",
+  "Diğer",
+] as const;
 
 export type NavLink = { href: string; label: string };
 

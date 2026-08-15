@@ -82,13 +82,22 @@ export const EVENTS: EventItem[] = [
       "Alanında güçlü bir ismi kampüse getirdiğimiz, salonu dolduran zirvemiz. Göktuğ Alaf ile ilham veren bir buluşma.",
   },
   {
-    slug: "crossroads",
-    title: "Crossroads",
-    meta: "Blockchain sektör konferansı",
-    tag: "Sektör",
-    image: "/events/crossroads.png",
+    slug: "tanisma-etkinligi",
+    title: "Tanışma Etkinliği",
+    meta: "Group Up! · Dönem açılışı",
+    tag: "Topluluk",
+    image: "/events/tanisma-etkinligi.webp",
     description:
-      "Solana ekosisteminin öne çıkan isimlerini dinlediğimiz, sektörün nabzını sahada tuttuğumuz büyük konferans.",
+      "Yeni üyelerle kaynaştığımız, dönemi hep birlikte açtığımız samimi tanışma buluşması.",
+  },
+  {
+    slug: "proteinocean-stant",
+    title: "ProteinOcean Standı",
+    meta: "Kampüs standı · marka iş birliği",
+    tag: "İş birliği",
+    image: "/events/proteinocean-stant.webp",
+    description:
+      "Kampüste kurduğumuz stantla üyelerimizi marka iş birliklerimizle buluşturduğumuz enerjik bir gün.",
   },
   {
     slug: "teknofest",
@@ -98,15 +107,6 @@ export const EVENTS: EventItem[] = [
     image: "/events/teknofest.webp",
     description:
       "Türkiye'nin en büyük teknoloji festivalinde, blokzincir yarışmasında ekibimizle sahnedeydik.",
-  },
-  {
-    slug: "tanisma-etkinligi",
-    title: "Tanışma Etkinliği",
-    meta: "Group Up! · Dönem açılışı",
-    tag: "Topluluk",
-    image: "/events/tanisma-etkinligi.webp",
-    description:
-      "Yeni üyelerle kaynaştığımız, dönemi hep birlikte açtığımız samimi tanışma buluşması.",
   },
   {
     slug: "voleybol-turnuvasi",
@@ -127,13 +127,13 @@ export const EVENTS: EventItem[] = [
       "Molalarda ekranların başında toplanan, herkesin katılabildiği eğlenceli bir rekabet.",
   },
   {
-    slug: "proteinocean-stant",
-    title: "ProteinOcean Standı",
-    meta: "Kampüs standı · marka iş birliği",
-    tag: "İş birliği",
-    image: "/events/proteinocean-stant.webp",
+    slug: "crossroads",
+    title: "Crossroads",
+    meta: "Blockchain sektör konferansı",
+    tag: "Sektör",
+    image: "/events/crossroads.png",
     description:
-      "Kampüste kurduğumuz stantla üyelerimizi marka iş birliklerimizle buluşturduğumuz enerjik bir gün.",
+      "Solana ekosisteminin öne çıkan isimlerini dinlediğimiz, sektörün nabzını sahada tuttuğumuz büyük konferans.",
   },
 ];
 

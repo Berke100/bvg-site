@@ -170,7 +170,7 @@ export const WHY_CARDS = [
 // Büyüme/etki sayaç bandı — ekibin verdiği gerçek rakamlar (Ağu 2026).
 export const IMPACT_STATS = [
   { value: "500+", label: "Instagram takipçisi" },
-  { value: "250+", label: "Aktif üye" },
+  { value: "500+", label: "Aktif üye" },
   { value: "15+", label: "Düzenlenen etkinlik" },
   { value: "10+", label: "Teknofest finalist takımı" },
 ] as const;

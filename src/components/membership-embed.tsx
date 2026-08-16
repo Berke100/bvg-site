@@ -13,10 +13,16 @@ type Status = "idle" | "submitting" | "success" | "error";
 /**
  * Üyelik başvuru formu — site kendi tasarımıyla render eder.
  *
- * Gönderimde doğrudan Google Form'un `formResponse` endpoint'ine POST
- * atılır; yanıtlar aynı Google Sheet'e düşer. Google bu isteğe CORS izni
- * vermediği için `no-cors` modda atılıyor — tarayıcı yanıtın içeriğini
- * okuyamaz, bu yüzden network hatası olmadıkça gönderimi başarılı sayıyoruz.
+ * Gönderimde bir Google Apps Script Web App'ine POST atılır; script aynı
+ * Google Sheet'e (Google Form'un yanıtlarının düştüğü sheet) satır ekler.
+ * Apps Script Web App'leri CORS'a izin verdiği için (Google Form'un kendi
+ * `formResponse` endpoint'inin aksine) gerçek yanıtı okuyup başarı/hata
+ * durumunu doğru şekilde gösterebiliyoruz.
+ *
+ * Body JSON string olarak gönderiliyor (application/x-www-form-urlencoded
+ * değil): Apps Script'in form-urlencoded body decoder'ı çok baytlı UTF-8'i
+ * (Türkçe karakterler) bozuyor; fetch'in string body'de varsayılan attığı
+ * `text/plain` content-type'ı bu decoder'ı devre dışı bırakıyor.
  */
 export function MembershipEmbed() {
   const [status, setStatus] = useState<Status>("idle");
@@ -27,17 +33,20 @@ export function MembershipEmbed() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    const params = new URLSearchParams();
+    const payload: Record<string, string> = {};
     for (const [field, entry] of Object.entries(MEMBERSHIP_FORM_FIELDS)) {
-      params.set(entry, String(data.get(field) ?? ""));
+      payload[entry] = String(data.get(field) ?? "");
     }
 
     try {
-      await fetch(MEMBERSHIP_FORM_ACTION, {
+      const res = await fetch(MEMBERSHIP_FORM_ACTION, {
         method: "POST",
-        mode: "no-cors",
-        body: params,
+        body: JSON.stringify(payload),
       });
+      const json = await res.json();
+      if (!res.ok || json.result !== "success") {
+        throw new Error("submit failed");
+      }
       setStatus("success");
       form.reset();
     } catch {

@@ -14,26 +14,26 @@ export const SITE = {
 } as const;
 
 /**
- * Üyelik başvuru formu — kendi tasarımımızla native form, gönderimde
- * doğrudan Google Form'un `formResponse` endpoint'ine POST atılır. Yanıtlar
- * aynı Google Sheet'e, gerçek Google Form'dan gelmiş gibi düşer.
+ * Üyelik başvuru formu — kendi tasarımımızla native form, gönderimde bir
+ * Google Apps Script Web App'ine POST atılır; script aynı Google Sheet'e
+ * (Google Form'un yanıtlarının düştüğü sheet) satır ekler.
  *
- * Bu resmi/dokümante bir Google API'si değil — `entry.XXXXXXX` alan ID'leri
- * formun canlı HTML'inden (FB_PUBLIC_LOAD_DATA_ değişkeni) çıkarıldı. Google
- * formdaki alanları değiştirirse (ekleme/çıkarma/yeniden adlandırma) bu
- * ID'lerin ve seçeneklerin yeniden çıkarılması gerekir — orijinal form:
- * https://docs.google.com/forms/d/e/1FAIpQLScrHMFVI5EbZXWer4hxJTrQ2FOHVHLKbrOHVshAElCQNrtOnw/viewform
+ * Google Form'un kendi `formResponse` endpoint'ine doğrudan POST atma
+ * (entry.XXXXXXX tekniği) artık Google'ın bot korumasınca 401 ile
+ * reddediliyor — bu yüzden Apps Script bir ara katman olarak kullanılıyor.
+ * Script kaynağı ve deploy adımları için Berke'de. Script `doPost`'ta
+ * `Form Responses 1` sheet'ine bu alan adlarıyla satır ekliyor.
  */
 export const MEMBERSHIP_FORM_ACTION =
-  "https://docs.google.com/forms/d/e/1FAIpQLScrHMFVI5EbZXWer4hxJTrQ2FOHVHLKbrOHVshAElCQNrtOnw/formResponse";
+  "https://script.google.com/macros/s/AKfycbwg25HdDa51Qt1fo7N-Vk-jq2D2AxjzdBhpNjcJlZGbIgjqRb0-z66UXDXQoweBODzdxQ/exec";
 
 export const MEMBERSHIP_FORM_FIELDS = {
-  adSoyad: "entry.2005620554",
-  email: "entry.1045781291",
-  telefon: "entry.1065046570",
-  universite: "entry.1166974658",
-  sinif: "entry.839337160",
-  bolum: "entry.1429038858",
+  adSoyad: "adSoyad",
+  email: "email",
+  telefon: "telefon",
+  universite: "universite",
+  sinif: "sinif",
+  bolum: "bolum",
 } as const;
 
 export const UNIVERSITE_OPTIONS = [

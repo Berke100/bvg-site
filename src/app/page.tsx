@@ -11,7 +11,8 @@ import {
 import { Reveal } from "@/components/reveal";
 import { Photo } from "@/components/photo";
 import { Icon, ArrowRightIcon, SparkIcon, TrophyIcon } from "@/components/icons";
-import { HERO_IMAGE, IMPACT_STATS, WHY_CARDS } from "@/lib/site";
+import { SponsorStrip } from "@/components/sponsor-strip";
+import { HERO_IMAGE, IMPACT_STATS, SPONSORS, WHY_CARDS } from "@/lib/site";
 
 export default function HomePage() {
   return (
@@ -196,6 +197,20 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* ============ İŞ BİRLİKLERİ ============ */}
+      <section className="py-16 sm:py-20">
+        <Container>
+          <Reveal>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-cream-dim">
+              İş birliği yaptığımız markalar
+            </p>
+          </Reveal>
+          <Reveal delay={80} className="mt-8">
+            <SponsorStrip sponsors={SPONSORS} />
+          </Reveal>
         </Container>
       </section>
 

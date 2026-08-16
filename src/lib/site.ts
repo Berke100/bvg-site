@@ -188,6 +188,19 @@ export const WHY_CARDS = [
   },
 ] as const;
 
+export type SponsorItem = {
+  name: string;
+  /**
+   * Gerçek logo ekibin elinde. Buraya /public/sponsors altındaki dosya yolu
+   * gelecek (örn. logo: "/sponsors/proteinocean.png"). Boş bırakılırsa
+   * otomatik olarak marka renkli bir isim rozeti gösterilir.
+   */
+  logo?: string;
+};
+
+// İş birliği yaptığımız markalar — logo eklemek için public/sponsors/README.md'ye bak.
+export const SPONSORS: SponsorItem[] = [{ name: "ProteinOcean" }];
+
 // Büyüme/etki sayaç bandı — ekibin verdiği gerçek rakamlar (Ağu 2026).
 export const IMPACT_STATS = [
   { value: "500+", label: "Instagram takipçisi" },

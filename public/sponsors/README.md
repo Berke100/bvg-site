@@ -20,6 +20,6 @@ Yeni bir sponsor eklerken:
 2. `src/lib/site.ts` içindeki `SPONSORS` dizisine `{ name: "Marka Adı", logo: "/sponsors/dosya-adi.png" }` olarak ekle.
 
 ## Notlar
-- Logo şeridi otomatik gri tonlama (grayscale) uygular, üzerine gelince renkli olur — bu yüzden koyu/açık her iki temada da okunaklı, sade logolar en iyi sonucu verir.
+- Logolar kendi renkleriyle gösterilir (gri tonlama yok) — bu yüzden koyu/açık her iki temada da okunaklı, sade logolar en iyi sonucu verir.
 - Orijinal logolardan arkaplanı siyah/beyaz olanların (crossroads, new-bies, subumektop, proteinocean) arka planı, site koyu temayla uyumlu görünsün diye şeffaflaştırıldı.
 - `next/image` SVG dosyalarını varsayılan olarak optimize etmiyor (güvenlik) — SVG logo eklersen PNG'ye çevirip koy.

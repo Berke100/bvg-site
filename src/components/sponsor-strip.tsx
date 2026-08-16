@@ -20,7 +20,7 @@ function SponsorMark({ sponsor }: { sponsor: SponsorItem }) {
         alt={sponsor.name}
         width={160}
         height={56}
-        className="h-10 w-auto object-contain opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 sm:h-12"
+        className="h-10 w-auto object-contain opacity-80 transition-opacity duration-300 hover:opacity-100 sm:h-12"
         onError={() => setFailed(true)}
       />
     );

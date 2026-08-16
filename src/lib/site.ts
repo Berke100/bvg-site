@@ -199,7 +199,15 @@ export type SponsorItem = {
 };
 
 // İş birliği yaptığımız markalar — logo eklemek için public/sponsors/README.md'ye bak.
-export const SPONSORS: SponsorItem[] = [{ name: "ProteinOcean" }];
+export const SPONSORS: SponsorItem[] = [
+  { name: "ProteinOcean", logo: "/sponsors/proteinocean.png" },
+  { name: "Solana Crossroads", logo: "/sponsors/crossroads.png" },
+  { name: "Sui", logo: "/sponsors/sui.png" },
+  { name: "Sakarya Teknokent", logo: "/sponsors/sakarya-teknokent.png" },
+  { name: "SUBÜMEKTOP", logo: "/sponsors/subumektop.png" },
+  { name: "TAG", logo: "/sponsors/tag.png" },
+  { name: "New Bi'Es", logo: "/sponsors/new-bies.png" },
+];
 
 // Büyüme/etki sayaç bandı — ekibin verdiği gerçek rakamlar (Ağu 2026).
 export const IMPACT_STATS = [

@@ -5,13 +5,21 @@ renkli bir isim rozeti kalır (kırık görsel çıkmaz).
 
 Mevcut sponsorlar (`src/lib/site.ts` içindeki `SPONSORS` dizisi):
 
-| Marka          | Dosya adı (henüz eklenmedi) |
-| -------------- | ---------------------------- |
-| ProteinOcean   | `proteinocean.png`           |
+| Marka              | Dosya adı                 |
+| ------------------ | -------------------------- |
+| ProteinOcean       | `proteinocean.png`         |
+| Solana Crossroads  | `crossroads.png`           |
+| Sui                | `sui.png`                  |
+| Sakarya Teknokent  | `sakarya-teknokent.png`    |
+| SUBÜMEKTOP         | `subumektop.png`           |
+| TAG                | `tag.png`                  |
+| New Bi'Es          | `new-bies.png`             |
 
 Yeni bir sponsor eklerken:
-1. Logoyu bu klasöre koy (tercihen şeffaf arka planlı `.png` veya `.svg`, geniş/yatay format).
-2. `src/lib/site.ts` içindeki `SPONSORS` dizisine `{ name: "Marka Adı", logo: "/sponsors/dosya-adi.png" }` olarak ekle (veya mevcut satıra `logo` alanını ekle).
+1. Logoyu bu klasöre koy (tercihen şeffaf arka planlı `.png`, geniş/yatay format, dosya adında boşluk kullanma).
+2. `src/lib/site.ts` içindeki `SPONSORS` dizisine `{ name: "Marka Adı", logo: "/sponsors/dosya-adi.png" }` olarak ekle.
 
 ## Notlar
 - Logo şeridi otomatik gri tonlama (grayscale) uygular, üzerine gelince renkli olur — bu yüzden koyu/açık her iki temada da okunaklı, sade logolar en iyi sonucu verir.
+- Orijinal logolardan arkaplanı siyah/beyaz olanların (crossroads, new-bies, subumektop, proteinocean) arka planı, site koyu temayla uyumlu görünsün diye şeffaflaştırıldı.
+- `next/image` SVG dosyalarını varsayılan olarak optimize etmiyor (güvenlik) — SVG logo eklersen PNG'ye çevirip koy.

@@ -2,15 +2,17 @@
 
 import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
 
-const GMAIL_ANDROID_PACKAGE = "com.google.android.gm";
-
 /**
  * mailto: linki masaüstünde/Android'de "uygulama seç" istemine düşüyor.
  * Apple cihazlarda (Mac/iPhone/iPad) varsayılan Mail uygulaması net olduğu
- * için mailto: davranışı korunuyor. Android'de Chrome'un `intent://` şeması
- * ile Gmail uygulaması yüklüyse doğrudan açılıyor (yoksa web compose'a
- * düşüyor); masaüstünde uygulama diye bir şey olmadığından Gmail web
- * compose doğrudan yeni sekmede açılıyor.
+ * için mailto: davranışı korunuyor.
+ *
+ * Android'de Chrome'un `intent://` şeması denendi ama Gmail bu path için
+ * app-link doğrulaması yapmadığından Chrome doğrudan https'e düşüyordu
+ * (uygulamayı hiç tetiklemiyordu). Onun yerine Gmail'in kendi özel URI
+ * şeması (`googlegmail://co`) kullanılıyor — uygulama yüklüyse sayfa
+ * arka plana geçer (visibilitychange), geçmezse ~1.2sn sonra web
+ * compose'a düşülüyor.
  */
 function getPlatform(): "apple" | "android" | "other" {
   if (typeof navigator === "undefined") return "other";
@@ -36,16 +38,24 @@ export function MailLink({ email, children, ...props }: MailLinkProps) {
     event.preventDefault();
     const composeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
 
-    if (platform === "android") {
-      window.location.href = `intent://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-        email,
-      )}#Intent;scheme=https;package=${GMAIL_ANDROID_PACKAGE};S.browser_fallback_url=${encodeURIComponent(
-        composeUrl,
-      )};end`;
+    if (platform !== "android") {
+      window.open(composeUrl, "_blank", "noopener,noreferrer");
       return;
     }
 
-    window.open(composeUrl, "_blank", "noopener,noreferrer");
+    const timer = window.setTimeout(() => {
+      window.location.href = composeUrl;
+    }, 1200);
+
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+        if (document.hidden) window.clearTimeout(timer);
+      },
+      { once: true },
+    );
+
+    window.location.href = `googlegmail://co?to=${encodeURIComponent(email)}`;
   };
 
   return (

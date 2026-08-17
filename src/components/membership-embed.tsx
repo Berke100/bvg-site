@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { ChevronDownIcon } from "@/components/icons";
 import {
   MEMBERSHIP_FORM_ACTION,
   MEMBERSHIP_FORM_FIELDS,
@@ -26,16 +27,29 @@ type Status = "idle" | "submitting" | "success" | "error";
  */
 export function MembershipEmbed() {
   const [status, setStatus] = useState<Status>("idle");
+  const [universite, setUniversite] = useState("");
+  const [sinif, setSinif] = useState("");
+  const [attemptedSubmit, setAttemptedSubmit] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!universite || !sinif) {
+      setAttemptedSubmit(true);
+      return;
+    }
+
     setStatus("submitting");
 
     const form = e.currentTarget;
     const data = new FormData(form);
+    const customValues: Record<string, string> = { universite, sinif };
     const payload: Record<string, string> = {};
     for (const [field, entry] of Object.entries(MEMBERSHIP_FORM_FIELDS)) {
-      payload[entry] = String(data.get(field) ?? "");
+      payload[entry] =
+        field in customValues
+          ? customValues[field]
+          : String(data.get(field) ?? "");
     }
 
     try {
@@ -49,6 +63,9 @@ export function MembershipEmbed() {
       }
       setStatus("success");
       form.reset();
+      setUniversite("");
+      setSinif("");
+      setAttemptedSubmit(false);
     } catch {
       setStatus("error");
     }
@@ -69,9 +86,9 @@ export function MembershipEmbed() {
   }
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-amber/40 bg-surface/60 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.75)]">
+    <div className="rounded-3xl border border-amber/40 bg-surface/60 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.75)]">
       {/* Marka başlık şeridi */}
-      <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-gold to-amber px-6 py-4">
+      <div className="flex items-center justify-between gap-3 rounded-t-3xl bg-gradient-to-r from-gold to-amber px-6 py-4">
         <div>
           <div className="font-display text-lg font-bold leading-tight text-bg">
             BVG Üyelik Başvurusu
@@ -100,11 +117,18 @@ export function MembershipEmbed() {
         />
         <SelectField
           label="Üniversite"
-          name="universite"
           options={UNIVERSITE_OPTIONS}
-          required
+          value={universite}
+          onChange={setUniversite}
+          error={attemptedSubmit && !universite}
         />
-        <SelectField label="Sınıf" name="sinif" options={SINIF_OPTIONS} required />
+        <SelectField
+          label="Sınıf"
+          options={SINIF_OPTIONS}
+          value={sinif}
+          onChange={setSinif}
+          error={attemptedSubmit && !sinif}
+        />
         <TextField label="Bölüm" name="bolum" required />
 
         {status === "error" ? (
@@ -149,35 +173,97 @@ function TextField({
   );
 }
 
+/**
+ * Native <select> Android'de OS'un kendi gri/eski dropdown menüsünü açıyor
+ * ve CSS ile stillenemiyor — bu yüzden tamamen özel, temaya uyan bir
+ * buton + liste menüsü ile değiştirildi.
+ */
 function SelectField({
   label,
-  name,
   options,
-  required,
+  value,
+  onChange,
+  error,
 }: {
   label: string;
-  name: string;
   options: readonly string[];
-  required?: boolean;
+  value: string;
+  onChange: (value: string) => void;
+  error?: boolean;
 }) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function onPointerDown(e: PointerEvent) {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
   return (
     <label className="block text-sm">
       <span className="text-cream-dim">{label}</span>
-      <select
-        name={name}
-        required={required}
-        defaultValue=""
-        className="mt-1.5 w-full rounded-xl border border-line bg-bg px-4 py-2.5 text-cream outline-none transition-colors focus:border-gold/60"
-      >
-        <option value="" disabled>
-          Seç
-        </option>
-        {options.map((opt) => (
-          <option key={opt} value={opt}>
-            {opt}
-          </option>
-        ))}
-      </select>
+      <div ref={rootRef} className="relative mt-1.5">
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          className={`flex w-full items-center justify-between rounded-xl border bg-bg px-4 py-2.5 text-left outline-none transition-colors focus:border-gold/60 ${
+            error ? "border-red-400/70" : "border-line"
+          } ${value ? "text-cream" : "text-cream-dim"}`}
+        >
+          <span>{value || "Seç"}</span>
+          <ChevronDownIcon
+            className={`h-4 w-4 shrink-0 text-cream-dim transition-transform ${
+              open ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+
+        {open ? (
+          <ul
+            role="listbox"
+            className="absolute z-20 mt-2 max-h-60 w-full overflow-auto rounded-xl border border-line bg-surface p-1.5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.75)]"
+          >
+            {options.map((opt) => (
+              <li key={opt} role="option" aria-selected={value === opt}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onChange(opt);
+                    setOpen(false);
+                  }}
+                  className={`block w-full rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-bg ${
+                    value === opt ? "text-gold" : "text-cream"
+                  }`}
+                >
+                  {opt}
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+      {error ? (
+        <span className="mt-1 block text-xs text-red-400">
+          Bu alan zorunlu
+        </span>
+      ) : null}
     </label>
   );
 }

@@ -141,22 +141,16 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ============ NETWORK VURGUSU ============ */}
-      <section className="border-y border-line bg-surface/30 py-20 sm:py-24">
+      {/* ============ İŞ BİRLİKLERİ ============ */}
+      <section className="py-16 sm:py-20">
         <Container>
           <Reveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <Kicker>Network &amp; kariyer</Kicker>
-              <h2 className="mt-4 text-3xl text-cream sm:text-4xl md:text-5xl">
-                Doğru bağlantılar, gerçek{" "}
-                <span className="text-gold-gradient">fırsatlar</span>
-              </h2>
-              <p className="mt-5 text-lg leading-relaxed text-cream-dim">
-                Sektör ortaklıklarımız sayesinde üyelerimize staj ve kariyer
-                kapıları açıyoruz. Kampüsün en geniş ağının bir parçası olmak,
-                mezun olmadan önce sahayla tanışmak demek.
-              </p>
-            </div>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-cream-dim">
+              İş birliği yaptığımız markalar
+            </p>
+          </Reveal>
+          <Reveal delay={80} className="mt-8">
+            <SponsorStrip sponsors={SPONSORS} />
           </Reveal>
         </Container>
       </section>
@@ -197,20 +191,6 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-        </Container>
-      </section>
-
-      {/* ============ İŞ BİRLİKLERİ ============ */}
-      <section className="py-16 sm:py-20">
-        <Container>
-          <Reveal>
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-cream-dim">
-              İş birliği yaptığımız markalar
-            </p>
-          </Reveal>
-          <Reveal delay={80} className="mt-8">
-            <SponsorStrip sponsors={SPONSORS} />
-          </Reveal>
         </Container>
       </section>
 
@@ -273,6 +253,26 @@ export default function HomePage() {
                 <Link href="/etkinlikler" className="text-gold hover:underline">
                   Etkinliklere göz at
                 </Link>
+              </p>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* ============ NETWORK VURGUSU ============ */}
+      <section className="border-y border-line bg-surface/30 py-20 sm:py-24">
+        <Container>
+          <Reveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker>Network &amp; kariyer</Kicker>
+              <h2 className="mt-4 text-3xl text-cream sm:text-4xl md:text-5xl">
+                Doğru bağlantılar, gerçek{" "}
+                <span className="text-gold-gradient">fırsatlar</span>
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-cream-dim">
+                Sektör ortaklıklarımız sayesinde üyelerimize staj ve kariyer
+                kapıları açıyoruz. Kampüsün en geniş ağının bir parçası olmak,
+                mezun olmadan önce sahayla tanışmak demek.
               </p>
             </div>
           </Reveal>

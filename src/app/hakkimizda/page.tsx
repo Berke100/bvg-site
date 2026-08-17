@@ -85,7 +85,7 @@ export default function HakkimizdaPage() {
             <p className="max-w-lg text-base text-cream-dim">
               Aramıza katıl; kampüsteki en güçlü network&apos;ün bir parçası ol.
             </p>
-            <Button href="/iletisim#katil">
+            <Button href="/uyelik">
               Aramıza Katıl
               <ArrowRightIcon className="h-4 w-4" />
             </Button>

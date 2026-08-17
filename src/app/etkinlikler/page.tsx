@@ -48,7 +48,7 @@ export default function EtkinliklerPage() {
                 Aramıza katıl, tüm etkinliklerden ilk sen haberdar ol.
               </p>
             </div>
-            <Button href="/iletisim#katil">
+            <Button href="/uyelik">
               Aramıza Katıl
               <ArrowRightIcon className="h-4 w-4" />
             </Button>

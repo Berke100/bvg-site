@@ -56,7 +56,7 @@ export default function GirisimPage() {
         <div className="coin-edge" aria-hidden />
       </section>
 
-      <Container className="py-16 sm:py-20">
+      <Container className="py-10 sm:py-12">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-lg leading-relaxed text-cream-dim">

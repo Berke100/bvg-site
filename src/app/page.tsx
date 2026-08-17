@@ -64,7 +64,7 @@ export default function HomePage() {
                   </Reveal>
                   <Reveal delay={180}>
                     <div className="mt-9 flex flex-wrap items-center gap-3">
-                      <Button href="/iletisim#katil">
+                      <Button href="/uyelik">
                         Aramıza Katıl
                         <ArrowRightIcon className="h-4 w-4" />
                       </Button>
@@ -111,7 +111,7 @@ export default function HomePage() {
                     olacak. Takipte kal.
                   </p>
                   <div className="mt-9">
-                    <Button href="/iletisim#katil" variant="outline">
+                    <Button href="/uyelik" variant="outline">
                       Haberdar ol
                       <ArrowRightIcon className="h-4 w-4" />
                     </Button>
@@ -256,7 +256,7 @@ export default function HomePage() {
                 fırsatlarla dolu bir dönem.
               </p>
               <div className="relative mt-9 flex justify-center">
-                <Button href="/iletisim#katil">
+                <Button href="/uyelik">
                   Üyelik formunu doldur
                   <ArrowRightIcon className="h-4 w-4" />
                 </Button>

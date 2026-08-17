@@ -98,7 +98,7 @@ export default function TeknofestPage() {
                 öğreniriz.
               </p>
             </div>
-            <Button href="/iletisim#katil">
+            <Button href="/uyelik">
               Başvur
               <ArrowRightIcon className="h-4 w-4" />
             </Button>

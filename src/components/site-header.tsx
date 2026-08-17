@@ -73,7 +73,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="/iletisim#katil" className="px-5 py-2.5">
+          <Button href="/uyelik" className="px-5 py-2.5">
             Aramıza Katıl
           </Button>
         </div>
@@ -130,7 +130,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <Button
-            href="/iletisim#katil"
+            href="/uyelik"
             className="mt-2 w-full"
           >
             Aramıza Katıl

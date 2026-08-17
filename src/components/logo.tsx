@@ -77,6 +77,30 @@ export function CoinMark({
 }
 
 /**
+ * Kare/yuvarlak marka işareti — gerçek BVG logosunu tek başına (yanında
+ * "BVG" kelime markası olmadan) göstermek gereken yerlerde (ör. footer)
+ * kullanılır. Dosya yokken (404) coin placeholder'a düşer.
+ */
+export function LogoMark({ className }: { className?: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (!failed) {
+    return (
+      <Image
+        src="/brand/bvg-logo.png"
+        alt="BVG"
+        width={64}
+        height={64}
+        className={`${className ?? ""} object-contain`}
+        onError={() => setFailed(true)}
+      />
+    );
+  }
+
+  return <CoinMark className={className} />;
+}
+
+/**
  * Yatay logo.
  *
  * Gerçek BVG logosu bekleniyor: dosyayı `public/brand/bvg-logo.png` (veya

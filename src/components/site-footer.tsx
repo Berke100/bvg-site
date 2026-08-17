@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NAV_LINKS, SITE } from "@/lib/site";
-import { CoinMark } from "@/components/logo";
+import { LogoMark } from "@/components/logo";
 import { InstagramIcon, LinkedInIcon, MailIcon } from "@/components/icons";
 import { MailLink } from "@/components/mail-link";
 
@@ -15,7 +15,7 @@ export function SiteFooter() {
           {/* Marka + açıklama */}
           <div>
             <span className="inline-flex items-center gap-2.5">
-              <CoinMark className="h-9 w-9" />
+              <LogoMark className="h-9 w-9" />
               <span className="font-display text-xl font-bold text-cream">
                 BVG
               </span>

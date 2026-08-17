@@ -45,6 +45,35 @@ export function MailIcon({ className }: IconProps) {
   );
 }
 
+export function LinkedInIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="4"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+      <path
+        d="M7.5 10v6.2M7.5 7.6v.01M11.5 16.2V13c0-1.4.9-2.4 2.1-2.4s1.9 1 1.9 2.4v3.2"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.5 10v6.2"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function ArrowRightIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>

@@ -10,6 +10,8 @@ export const SITE = {
   university: "Sakarya Uygulamalı Bilimler Üniversitesi",
   instagram: "https://instagram.com/blockchainvegelecek",
   instagramHandle: "@blockchainvegelecek",
+  linkedin: "https://www.linkedin.com/company/bvgtopluluk/",
+  linkedinHandle: "BVG Topluluk",
   email: "blockchainvegelecek@gmail.com",
 } as const;
 

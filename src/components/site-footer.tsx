@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { NAV_LINKS, SITE } from "@/lib/site";
 import { CoinMark } from "@/components/logo";
-import { InstagramIcon, MailIcon } from "@/components/icons";
+import { InstagramIcon, LinkedInIcon, MailIcon } from "@/components/icons";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -59,6 +59,17 @@ export function SiteFooter() {
                 >
                   <InstagramIcon className="h-4 w-4" />
                   {SITE.instagramHandle}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 text-sm text-cream-dim transition-colors hover:text-gold"
+                >
+                  <LinkedInIcon className="h-4 w-4" />
+                  {SITE.linkedinHandle}
                 </a>
               </li>
               <li>

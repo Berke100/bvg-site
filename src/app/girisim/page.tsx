@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Button, Card, Container, PageHeader } from "@/components/ui";
+import { Card, Container, PageHeader } from "@/components/ui";
 import { Reveal } from "@/components/reveal";
-import { ArrowRightIcon } from "@/components/icons";
+import { IdeaForm } from "@/components/idea-form";
 
 export const metadata: Metadata = {
   title: "BVG Girişim",
@@ -61,24 +61,19 @@ export default function GirisimPage() {
           ))}
         </div>
 
-        {/* Vizyon şeridi */}
+        {/* Vizyon şeridi + fikir formu */}
         <Reveal>
-          <div className="mt-16 overflow-hidden rounded-3xl border border-line bg-surface/40 p-8 sm:p-12">
-            <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-              <div>
-                <h2 className="text-2xl text-cream sm:text-3xl">
-                  Bir fikrin mi var?
-                </h2>
-                <p className="mt-3 max-w-xl text-base leading-relaxed text-cream-dim">
-                  Olgun olması gerekmiyor. Aramıza katıl, fikrini masaya koy;
-                  birlikte nereye gidebileceğine bakalım.
-                </p>
-              </div>
-              <Button href="/iletisim#katil">
-                Fikrini paylaş
-                <ArrowRightIcon className="h-4 w-4" />
-              </Button>
+          <div className="mt-16 grid gap-10 overflow-hidden rounded-3xl border border-line bg-surface/40 p-8 sm:p-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+            <div>
+              <h2 className="text-2xl text-cream sm:text-3xl">
+                Bir fikrin mi var?
+              </h2>
+              <p className="mt-3 max-w-xl text-base leading-relaxed text-cream-dim">
+                Olgun olması gerekmiyor. Fikrini aşağıya yaz, bize ulaşsın;
+                birlikte nereye gidebileceğine bakalım.
+              </p>
             </div>
+            <IdeaForm />
           </div>
         </Reveal>
       </Container>

@@ -38,6 +38,23 @@ export const MEMBERSHIP_FORM_FIELDS = {
   bolum: "bolum",
 } as const;
 
+/**
+ * Girişim sayfasındaki fikir paylaşım formu — henüz bir Apps Script Web
+ * App'ine bağlı değil. Boş string olduğu sürece IdeaForm gönderim
+ * denemez, "yakında aktif olacak" mesajını gösterir (gerçek ziyaretçiyi
+ * boşa gönderim yaptığına inandırmamak için). Üyelik formuyla aynı
+ * yöntemle (yeni bir Google Sheet + Apps Script Web App, JSON body ile
+ * POST) bağlanmaya hazır — URL geldiğinde burayı doldurmak yeterli.
+ */
+export const IDEA_FORM_ACTION = "";
+
+export const IDEA_FORM_FIELDS = {
+  adSoyad: "adSoyad",
+  email: "email",
+  telefon: "telefon",
+  fikir: "fikir",
+} as const;
+
 export const UNIVERSITE_OPTIONS = [
   "Sakarya Uygulamalı Bilimler Üniversitesi",
   "Sakarya Üniversitesi",

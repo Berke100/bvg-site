@@ -10,6 +10,7 @@ import {
 } from "@/components/ui";
 import { Reveal } from "@/components/reveal";
 import { Photo } from "@/components/photo";
+import { HeroCarousel } from "@/components/hero-carousel";
 import { Icon, ArrowRightIcon, SparkIcon, TrophyIcon } from "@/components/icons";
 import { SponsorStrip } from "@/components/sponsor-strip";
 import { HERO_IMAGE, IMPACT_STATS, SPONSORS, WHY_CARDS } from "@/lib/site";
@@ -29,65 +30,103 @@ export default function HomePage() {
           }}
         />
         <Container className="relative pt-16 pb-20 sm:pt-24 sm:pb-28">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <Reveal>
-                <Kicker>Geçtiğimiz dönem · Spor Zirvesi</Kicker>
-              </Reveal>
-              <Reveal delay={60}>
-                <h1 className="mt-5 text-4xl font-bold leading-[1.02] tracking-tight text-cream sm:text-6xl md:text-7xl">
-                  Kampüsün{" "}
-                  <span className="text-gold-gradient">en güçlü</span>{" "}
-                  network&apos;ü
-                </h1>
-              </Reveal>
-              <Reveal delay={120}>
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream-dim">
-                  Bölüm fark etmez. Spor Zirvesi&apos;nde konuklarımız{" "}
-                  <strong className="font-semibold text-cream">
-                    Göktuğ Alaf
-                  </strong>{" "}
-                  ve{" "}
-                  <strong className="font-semibold text-cream">
-                    Koray Girgin
-                  </strong>{" "}
-                  ile 1000&apos;den fazla katılımcıyı bir araya getirdik. BVG,
-                  seni doğru insanlarla, gerçek fırsatlarla buluşturan
-                  topluluk.
-                </p>
-              </Reveal>
-              <Reveal delay={180}>
-                <div className="mt-9 flex flex-wrap items-center gap-3">
-                  <Button href="/iletisim#katil">
-                    Aramıza Katıl
-                    <ArrowRightIcon className="h-4 w-4" />
-                  </Button>
-                  <Button href="/etkinlikler" variant="outline">
-                    Etkinlikleri Gör
-                  </Button>
+          <HeroCarousel
+            slides={[
+              <div
+                key="spor-zirvesi"
+                className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+              >
+                <div>
+                  <Reveal>
+                    <Kicker>Geçtiğimiz dönem · Spor Zirvesi</Kicker>
+                  </Reveal>
+                  <Reveal delay={60}>
+                    <h1 className="mt-5 text-4xl font-bold leading-[1.02] tracking-tight text-cream sm:text-6xl md:text-7xl">
+                      Kampüsün{" "}
+                      <span className="text-gold-gradient">en güçlü</span>{" "}
+                      network&apos;ü
+                    </h1>
+                  </Reveal>
+                  <Reveal delay={120}>
+                    <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream-dim">
+                      Bölüm fark etmez. Spor Zirvesi&apos;nde konuklarımız{" "}
+                      <strong className="font-semibold text-cream">
+                        Göktuğ Alaf
+                      </strong>{" "}
+                      ve{" "}
+                      <strong className="font-semibold text-cream">
+                        Koray Girgin
+                      </strong>{" "}
+                      ile 1000&apos;den fazla katılımcıyı bir araya getirdik.
+                      BVG, seni doğru insanlarla, gerçek fırsatlarla
+                      buluşturan topluluk.
+                    </p>
+                  </Reveal>
+                  <Reveal delay={180}>
+                    <div className="mt-9 flex flex-wrap items-center gap-3">
+                      <Button href="/iletisim#katil">
+                        Aramıza Katıl
+                        <ArrowRightIcon className="h-4 w-4" />
+                      </Button>
+                      <Button href="/etkinlikler" variant="outline">
+                        Etkinlikleri Gör
+                      </Button>
+                    </div>
+                  </Reveal>
                 </div>
-              </Reveal>
-            </div>
 
-            <Reveal delay={160} className="relative">
-              {/* Foto: public/hero/spor-zirvesi.jpg konunca otomatik görünür */}
-              <Photo
-                src={HERO_IMAGE}
-                alt="Spor Zirvesi — konuşmacılar Göktuğ Alaf & Koray Girgin"
-                label="Spor Zirvesi — Göktuğ Alaf & Koray Girgin"
-                ratio="aspect-[4/5]"
-                priority
-              />
-              <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-line bg-bg/90 px-5 py-4 backdrop-blur sm:block">
-                <div className="font-display text-2xl font-bold text-gold-gradient">
-                  1000+ katılımcı
+                <div className="relative">
+                  {/* Foto: public/hero/spor-zirvesi.jpg konunca otomatik görünür */}
+                  <Photo
+                    src={HERO_IMAGE}
+                    alt="Spor Zirvesi — konuşmacılar Göktuğ Alaf & Koray Girgin"
+                    label="Spor Zirvesi — Göktuğ Alaf & Koray Girgin"
+                    ratio="aspect-[4/5]"
+                    priority
+                  />
+                  <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-line bg-bg/90 px-5 py-4 backdrop-blur sm:block">
+                    <div className="font-display text-2xl font-bold text-gold-gradient">
+                      1000+ katılımcı
+                    </div>
+                    <div className="text-xs text-cream-dim">
+                      Göktuğ Alaf & Koray Girgin
+                    </div>
+                  </div>
                 </div>
-                <div className="text-xs text-cream-dim">
-                  Göktuğ Alaf & Koray Girgin
+              </div>,
+              <div
+                key="yakinda"
+                className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+              >
+                <div>
+                  <Kicker>Yakında</Kicker>
+                  <h1 className="mt-5 text-4xl font-bold leading-[1.02] tracking-tight text-cream sm:text-6xl md:text-7xl">
+                    Bu sezon kampüse{" "}
+                    <span className="text-gold-gradient">güçlü isimler</span>{" "}
+                    geliyor
+                  </h1>
+                  <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream-dim">
+                    Perde arkasında büyük buluşmalar hazırlıyoruz. Görüşmeler
+                    sürüyor — ismi henüz veremeyiz ama sürprizlerimiz büyük
+                    olacak. Takipte kal.
+                  </p>
+                  <div className="mt-9">
+                    <Button href="/iletisim#katil" variant="outline">
+                      Haberdar ol
+                      <ArrowRightIcon className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          </div>
+
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-amber/30 bg-gradient-to-br from-surface-2/40 via-surface to-bg">
+                  <SparkIcon className="absolute right-6 top-6 h-10 w-10 text-gold/40" />
+                  <div className="flex h-full items-center justify-center">
+                    <SparkIcon className="h-24 w-24 text-gold/20" />
+                  </div>
+                </div>
+              </div>,
+            ]}
+          />
         </Container>
         <CoinEdge />
       </section>
@@ -151,32 +190,6 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={80} className="mt-8">
             <SponsorStrip sponsors={SPONSORS} />
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* ============ YAKINDA GELECEKLER (teaser) ============ */}
-      <section className="py-20 sm:py-24">
-        <Container>
-          <Reveal>
-            <div className="relative overflow-hidden rounded-3xl border border-amber/30 bg-gradient-to-br from-surface-2/40 via-surface to-bg p-8 sm:p-14">
-              <SparkIcon className="absolute right-6 top-6 h-10 w-10 text-gold/40" />
-              <Kicker>Yakında</Kicker>
-              <h2 className="mt-4 max-w-2xl text-3xl text-cream sm:text-4xl md:text-5xl">
-                Bu sezon kampüse güçlü isimler geliyor
-              </h2>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream-dim">
-                Perde arkasında büyük buluşmalar hazırlıyoruz. Görüşmeler sürüyor
-                — ismi henüz veremeyiz ama sürprizlerimiz büyük olacak. Takipte
-                kal.
-              </p>
-              <div className="mt-8">
-                <Button href="/iletisim#katil" variant="outline">
-                  Haberdar ol
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
           </Reveal>
         </Container>
       </section>
@@ -253,26 +266,6 @@ export default function HomePage() {
                 <Link href="/etkinlikler" className="text-gold hover:underline">
                   Etkinliklere göz at
                 </Link>
-              </p>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* ============ NETWORK VURGUSU ============ */}
-      <section className="border-y border-line bg-surface/30 py-20 sm:py-24">
-        <Container>
-          <Reveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <Kicker>Network &amp; kariyer</Kicker>
-              <h2 className="mt-4 text-3xl text-cream sm:text-4xl md:text-5xl">
-                Doğru bağlantılar, gerçek{" "}
-                <span className="text-gold-gradient">fırsatlar</span>
-              </h2>
-              <p className="mt-5 text-lg leading-relaxed text-cream-dim">
-                Sektör ortaklıklarımız sayesinde üyelerimize staj ve kariyer
-                kapıları açıyoruz. Kampüsün en geniş ağının bir parçası olmak,
-                mezun olmadan önce sahayla tanışmak demek.
               </p>
             </div>
           </Reveal>

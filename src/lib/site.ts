@@ -302,6 +302,27 @@ export const SPONSORS: SponsorItem[] = [
   { name: "New Bi'Es", logo: "/sponsors/new-bies.png" },
 ];
 
+export type InstagramPost = {
+  /** public/instagram altındaki dosya yolu, örn. "/instagram/post-1.jpg" */
+  image: string;
+  caption: string;
+  /** Gerçek Instagram gönderisinin linki — verilirse kartta "Gönderiyi gör" çıkar. */
+  permalink?: string;
+  date?: string;
+};
+
+/**
+ * /haberler sayfasında kart olarak gösterilir. Instagram'ın resmi embed
+ * widget'ı sabit beyaz kart olarak geldiği (CSS ile temaya boyanamıyor)
+ * için bunun yerine kendi kart tasarımımızla gösteriliyor.
+ *
+ * Yeni gönderi eklemek için: görseli public/instagram/ klasörüne koy,
+ * aşağıya { image, caption, permalink } olarak ekle (bkz.
+ * public/instagram/README.md). Dizi boşken sayfa "Yakında burada" +
+ * Instagram takip linki gösterir, boş görünmez.
+ */
+export const INSTAGRAM_POSTS: InstagramPost[] = [];
+
 // Büyüme/etki sayaç bandı — ekibin verdiği gerçek rakamlar (Ağu 2026).
 export const IMPACT_STATS = [
   { value: "500+", label: "Instagram takipçisi" },

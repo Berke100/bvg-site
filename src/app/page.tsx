@@ -111,7 +111,7 @@ export default function HomePage() {
                     olacak. Takipte kal.
                   </p>
                   <div className="mt-9">
-                    <Button href="/uyelik" variant="outline">
+                    <Button href="/haberler" variant="outline">
                       Haberdar ol
                       <ArrowRightIcon className="h-4 w-4" />
                     </Button>

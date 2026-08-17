@@ -1,37 +1,60 @@
 import type { Metadata } from "next";
-import { Card, Container, PageHeader } from "@/components/ui";
+import { Container, Kicker } from "@/components/ui";
 import { Reveal } from "@/components/reveal";
 import { IdeaForm } from "@/components/idea-form";
 
 export const metadata: Metadata = {
   title: "BVG Girişim",
   description:
-    "Girişimcilik ruhunu besliyoruz: mentorluk, network ve destek. BVG Girişim vizyonu.",
+    "Girişimcilik ruhunu besliyoruz. Bir fikrin mi var? Bize ulaştır, birlikte nereye gidebileceğine bakalım.",
 };
-
-const PILLARS = [
-  {
-    title: "Mentorluk",
-    text: "Deneyimli isimlerle bir araya gel; fikrini doğru sorularla olgunlaştır, yol haritanı birlikte çiz.",
-  },
-  {
-    title: "Network",
-    text: "Kampüsün en geniş ağı senin arkanda. Kurucu adaylarından potansiyel ortaklara doğru bağlantıları kur.",
-  },
-  {
-    title: "Destek",
-    text: "Fikirden ilk adıma uzanan yolda kaynak, motivasyon ve topluluk desteğiyle yalnız değilsin.",
-  },
-];
 
 export default function GirisimPage() {
   return (
     <>
-      <PageHeader
-        kicker="BVG Girişim"
-        title="Girişimcilik ruhunu besliyoruz"
-        description="Henüz başındayız ve tam da bu yüzden heyecanlıyız. BVG Girişim, bir fikri olan herkese ilk adımı atacağı ortamı sunma vizyonuyla yola çıkıyor."
-      />
+      <section className="relative overflow-hidden border-b border-line">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full opacity-25 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(242,183,5,0.35), transparent 65%)",
+          }}
+        />
+        <div className="relative mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14">
+            <Reveal>
+              <div>
+                <Kicker>BVG Girişim</Kicker>
+                <h1 className="mt-4 text-4xl font-bold tracking-tight text-cream sm:text-5xl md:text-6xl">
+                  Girişimcilik ruhunu besliyoruz
+                </h1>
+                <p className="mt-5 text-lg leading-relaxed text-cream-dim">
+                  Henüz başındayız ve tam da bu yüzden heyecanlıyız. BVG
+                  Girişim, bir fikri olan herkese ilk adımı atacağı ortamı
+                  sunma vizyonuyla yola çıkıyor.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <div>
+                <h2 className="text-2xl text-cream sm:text-3xl">
+                  Bir fikrin mi var?
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-cream-dim">
+                  Olgun olması gerekmiyor. Fikrini aşağıya yaz, bize ulaşsın;
+                  birlikte nereye gidebileceğine bakalım.
+                </p>
+                <div className="mt-6">
+                  <IdeaForm />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+        <div className="coin-edge" aria-hidden />
+      </section>
 
       <Container className="py-16 sm:py-20">
         <Reveal>
@@ -41,39 +64,6 @@ export default function GirisimPage() {
               Amacımız o kıvılcımı görünür kılmak: doğru insanları bir araya
               getirip, denemekten korkmayan bir kültür inşa etmek.
             </p>
-          </div>
-        </Reveal>
-
-        {/* Üç sütun */}
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {PILLARS.map((pillar, i) => (
-            <Reveal key={pillar.title} delay={i * 90}>
-              <Card className="h-full">
-                <div className="font-display text-sm font-bold uppercase tracking-widest text-amber">
-                  0{i + 1}
-                </div>
-                <h3 className="mt-4 text-2xl text-cream">{pillar.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-cream-dim">
-                  {pillar.text}
-                </p>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* Vizyon şeridi + fikir formu */}
-        <Reveal>
-          <div className="mt-16 grid gap-10 overflow-hidden rounded-3xl border border-line bg-surface/40 p-8 sm:p-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-            <div>
-              <h2 className="text-2xl text-cream sm:text-3xl">
-                Bir fikrin mi var?
-              </h2>
-              <p className="mt-3 max-w-xl text-base leading-relaxed text-cream-dim">
-                Olgun olması gerekmiyor. Fikrini aşağıya yaz, bize ulaşsın;
-                birlikte nereye gidebileceğine bakalım.
-              </p>
-            </div>
-            <IdeaForm />
           </div>
         </Reveal>
       </Container>

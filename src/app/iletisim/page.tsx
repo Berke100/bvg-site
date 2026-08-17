@@ -3,6 +3,7 @@ import { Container, PageHeader } from "@/components/ui";
 import { Reveal } from "@/components/reveal";
 import { MembershipEmbed } from "@/components/membership-embed";
 import { InstagramIcon, LinkedInIcon, MailIcon } from "@/components/icons";
+import { MailLink } from "@/components/mail-link";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -70,8 +71,8 @@ export default function IletisimPage() {
                   </span>
                 </a>
 
-                <a
-                  href={`mailto:${SITE.email}`}
+                <MailLink
+                  email={SITE.email}
                   className="group flex items-center gap-4 rounded-2xl border border-line bg-surface/40 p-4 transition-colors hover:border-gold/50"
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-amber/30 bg-bg text-gold">
@@ -85,7 +86,7 @@ export default function IletisimPage() {
                       {SITE.email}
                     </span>
                   </span>
-                </a>
+                </MailLink>
               </div>
             </div>
           </Reveal>

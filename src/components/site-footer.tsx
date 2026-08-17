@@ -2,6 +2,7 @@ import Link from "next/link";
 import { NAV_LINKS, SITE } from "@/lib/site";
 import { CoinMark } from "@/components/logo";
 import { InstagramIcon, LinkedInIcon, MailIcon } from "@/components/icons";
+import { MailLink } from "@/components/mail-link";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -73,13 +74,13 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${SITE.email}`}
+                <MailLink
+                  email={SITE.email}
                   className="inline-flex items-center gap-2.5 text-sm text-cream-dim transition-colors hover:text-gold"
                 >
                   <MailIcon className="h-4 w-4" />
                   {SITE.email}
-                </a>
+                </MailLink>
               </li>
             </ul>
           </div>

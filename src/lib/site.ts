@@ -75,6 +75,12 @@ export type EventItem = {
    * Örn: image: "/events/spor-zirvesi.jpg"
    */
   image?: string;
+  /**
+   * Etkinlik kartındaki görsele/başlığa tıklayınca açılan, büyütülüp
+   * aralarında gezilebilen galeri. Görsel (.jpg/.png/.webp) ve video
+   * (.mp4) yolları karışık verilebilir — lightbox uzantıya göre ayırır.
+   */
+  gallery?: string[];
 };
 
 /*
@@ -103,6 +109,19 @@ export const EVENTS: EventItem[] = [
     image: "/events/spor-zirvesi.webp",
     description:
       "1000'den fazla katılımcıyla salonu dolduran zirvemiz. Göktuğ Alaf ve Koray Girgin'in konuk olduğu ilham verici bir buluşma.",
+    gallery: [
+      "/spor_zirvesi/spor_zirvesi1.jpg",
+      "/spor_zirvesi/spor_zirvesi2.jpg",
+      "/spor_zirvesi/spor_zirvesi3.jpg",
+      "/spor_zirvesi/spor_zirvesi4.jpg",
+      "/spor_zirvesi/spor_zirvesi5.jpg",
+      "/spor_zirvesi/spor_zirvesi6.jpg",
+      "/spor_zirvesi/spor_zirvesi7.jpg",
+      "/spor_zirvesi/spor_zirvesi8.jpg",
+      "/spor_zirvesi/spor_zirvesi9.jpg",
+      "/spor_zirvesi/spor_zirvesi10.mp4",
+      "/spor_zirvesi/spor_zirvesi11.mp4",
+    ],
   },
   {
     slug: "tanisma-etkinligi",
@@ -112,6 +131,19 @@ export const EVENTS: EventItem[] = [
     image: "/events/tanisma-etkinligi.webp",
     description:
       "Yeni üyelerle kaynaştığımız, dönemi hep birlikte açtığımız samimi tanışma buluşması.",
+    gallery: [
+      "/tanisma_etkinligi/tanisma_etkinligi2.png",
+      "/tanisma_etkinligi/tanisma_etkinligi3.png",
+      "/tanisma_etkinligi/tanisma_etkinligi4.png",
+      "/tanisma_etkinligi/tanisma_etkinligi5.png",
+      "/tanisma_etkinligi/tanisma_etkinligi6.png",
+      "/tanisma_etkinligi/tanisma_etkinligi7.png",
+      "/tanisma_etkinligi/tanisma_etkinligi8.png",
+      "/tanisma_etkinligi/tanisma_etkinligi9.png",
+      "/tanisma_etkinligi/tanisma_etkinligi10.png",
+      "/tanisma_etkinligi/tanisma_etkinligi11.png",
+      "/tanisma_etkinligi/tanisma_etkinligi12.png",
+    ],
   },
   {
     slug: "proteinocean-stant",
@@ -130,6 +162,16 @@ export const EVENTS: EventItem[] = [
     image: "/events/teknofest.webp",
     description:
       "Türkiye'nin en büyük teknoloji festivalinde, blokzincir yarışmasında ekibimizle sahnedeydik.",
+    gallery: [
+      "/teknofest/teknofest1.jpg",
+      "/teknofest/teknofest2.jpg",
+      "/teknofest/teknofest3.jpg",
+      "/teknofest/teknofest4.jpg",
+      "/teknofest/teknofest5.jpg",
+      "/teknofest/teknofest6.jpg",
+      "/teknofest/teknofest7.jpg",
+      "/teknofest/teknofest8.jpg",
+    ],
   },
   {
     slug: "voleybol-turnuvasi",
@@ -139,6 +181,16 @@ export const EVENTS: EventItem[] = [
     image: "/events/voleybol-turnuvasi.jpg",
     description:
       "Bölümler arası kaynaşmayı büyüten, rekabetin dostlukla buluştuğu enerjik bir turnuva.",
+    gallery: [
+      "/voleybol_turnuvasi/voleybol_turnuvasi1.png",
+      "/voleybol_turnuvasi/voleybol_turnuvasi2.png",
+      "/voleybol_turnuvasi/voleybol_turnuvasi3.png",
+      "/voleybol_turnuvasi/voleybol_turnuvasi4.png",
+      "/voleybol_turnuvasi/voleybol_turnuvasi5.png",
+      "/voleybol_turnuvasi/voleybol_turnuvasi6.png",
+      "/voleybol_turnuvasi/voleybol_turnuvasi7.png",
+      "/voleybol_turnuvasi/voleybol_turnuvasi8.png",
+    ],
   },
   {
     slug: "playstation-turnuvasi",
@@ -148,6 +200,12 @@ export const EVENTS: EventItem[] = [
     image: "/events/playstation-turnuvasi.jpg",
     description:
       "Molalarda ekranların başında toplanan, herkesin katılabildiği eğlenceli bir rekabet.",
+    gallery: [
+      "/playstation_turnuvasi/playstation_turnuvasi1.jpg",
+      "/playstation_turnuvasi/playstation_turnuvasi2.jpg",
+      "/playstation_turnuvasi/playstation_turnuvasi3.jpg",
+      "/playstation_turnuvasi/playstation_turnuvasi4.jpg",
+    ],
   },
   {
     slug: "crossroads",
@@ -157,6 +215,22 @@ export const EVENTS: EventItem[] = [
     image: "/events/crossroads.png",
     description:
       "Solana ekosisteminin öne çıkan isimlerini dinlediğimiz, sektörün nabzını sahada tuttuğumuz büyük konferans.",
+  },
+  {
+    slug: "egitimler",
+    title: "Eğitimler",
+    meta: "Düzenli eğitim ve atölyeler",
+    tag: "Eğitim",
+    image: "/egitimler/egitimler1.jpg",
+    description:
+      "Blockchain'den yazılıma, üyelerimizi geliştirmek için düzenli aralıklarla düzenlediğimiz eğitim ve atölyeler.",
+    gallery: [
+      "/egitimler/egitimler1.jpg",
+      "/egitimler/egitimler2.jpg",
+      "/egitimler/egitimler3.jpg",
+      "/egitimler/egitimler4.jpg",
+      "/egitimler/egitimler5.jpg",
+    ],
   },
 ];
 

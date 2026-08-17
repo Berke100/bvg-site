@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Button, Container, PageHeader } from "@/components/ui";
 import { Reveal } from "@/components/reveal";
-import { Photo } from "@/components/photo";
+import { EventCard, FeaturedEventCard } from "@/components/event-card";
 import { ArrowRightIcon } from "@/components/icons";
 import { EVENTS } from "@/lib/site";
 
@@ -27,60 +27,14 @@ export default function EtkinliklerPage() {
       <Container className="py-16 sm:py-20">
         {/* Öne çıkan etkinlik */}
         <Reveal>
-          <article className="grid gap-8 overflow-hidden rounded-3xl border border-amber/30 bg-surface/40 p-6 sm:p-8 lg:grid-cols-2 lg:items-center">
-            <div>
-              <Photo
-                src={featured.image}
-                alt={featured.title}
-                label={featured.title}
-                ratio="aspect-[16/10]"
-                priority
-              />
-            </div>
-            <div>
-              <span className="inline-flex rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-gold">
-                {featured.tag}
-              </span>
-              <h2 className="mt-4 text-3xl text-cream sm:text-4xl">
-                {featured.title}
-              </h2>
-              <p className="mt-2 text-sm font-medium text-amber">
-                {featured.meta}
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-cream-dim">
-                {featured.description}
-              </p>
-            </div>
-          </article>
+          <FeaturedEventCard event={featured} />
         </Reveal>
 
         {/* Diğer etkinlikler */}
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
           {rest.map((event, i) => (
             <Reveal key={event.slug} delay={i * 70}>
-              <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/60 transition-colors duration-300 hover:border-amber/50">
-                <div className="border-b border-line">
-                  <Photo
-                    src={event.image}
-                    alt={event.title}
-                    label={event.title}
-                    ratio="aspect-[16/9]"
-                    className="rounded-b-none border-0"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-amber">
-                    {event.tag}
-                  </span>
-                  <h3 className="mt-2 text-xl text-cream">{event.title}</h3>
-                  <p className="mt-1 text-sm font-medium text-cream-dim">
-                    {event.meta}
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-cream-dim">
-                    {event.description}
-                  </p>
-                </div>
-              </div>
+              <EventCard event={event} />
             </Reveal>
           ))}
         </div>

@@ -4,6 +4,7 @@ import { Reveal } from "@/components/reveal";
 import { InstagramPostCard } from "@/components/instagram-post-card";
 import { ArrowRightIcon, InstagramIcon } from "@/components/icons";
 import { INSTAGRAM_POSTS, SITE } from "@/lib/site";
+import { getInstagramPosts } from "@/lib/instagram";
 
 export const metadata: Metadata = {
   title: "Haberler",
@@ -11,7 +12,15 @@ export const metadata: Metadata = {
     "BVG'den son paylaşımlar ve duyurular. En taze haberler için Instagram'ı takip et.",
 };
 
-export default function HaberlerPage() {
+// Instagram'dan çekilen gönderiler saatte bir tazelenir (ISR).
+export const revalidate = 3600;
+
+export default async function HaberlerPage() {
+  const livePosts = await getInstagramPosts();
+  // Canlı bağlantı henüz kurulmadıysa (token yok/süresi dolmuş) site.ts'teki
+  // elle eklenmiş listeye düşer — sayfa hiçbir durumda boş/kırık kalmaz.
+  const posts = livePosts.length > 0 ? livePosts : INSTAGRAM_POSTS;
+
   return (
     <>
       <PageHeader
@@ -21,9 +30,9 @@ export default function HaberlerPage() {
       />
 
       <Container className="py-16 sm:py-20">
-        {INSTAGRAM_POSTS.length > 0 ? (
+        {posts.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {INSTAGRAM_POSTS.map((post, i) => (
+            {posts.map((post, i) => (
               <Reveal key={post.image} delay={i * 70}>
                 <InstagramPostCard post={post} />
               </Reveal>

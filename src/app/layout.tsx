@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { WhatsAppBanner } from "@/components/whatsapp-banner";
 
 // Başlıklar için karakterli display font (Türkçe karakter desteği: latin-ext)
 const bricolage = Bricolage_Grotesque({
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bricolage.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <WhatsAppBanner />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

@@ -12,6 +12,7 @@ export const SITE = {
   instagramHandle: "@blockchainvegelecek",
   linkedin: "https://www.linkedin.com/company/bvgtopluluk/",
   linkedinHandle: "BVG Topluluk",
+  whatsapp: "https://chat.whatsapp.com/DqVoeacCf0iKw12QzfM7w3",
   email: "blockchainvegelecek@gmail.com",
 } as const;
 

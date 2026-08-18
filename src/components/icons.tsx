@@ -74,6 +74,23 @@ export function LinkedInIcon({ className }: IconProps) {
   );
 }
 
+export function WhatsAppIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
+      <path
+        d="M12 3a9 9 0 0 0-7.75 13.53L3 21l4.6-1.21A9 9 0 1 0 12 3Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.7 8.4c.2-.5.4-.5.6-.5h.4c.15 0 .35 0 .5.4.2.5.65 1.65.7 1.8.05.15.1.3 0 .5-.1.2-.15.3-.3.45-.15.15-.3.35-.45.45-.15.15-.3.3-.15.55.15.25.7 1.1 1.5 1.8 1 .9 1.85 1.15 2.1 1.3.25.15.4.1.55-.05.15-.15.6-.7.75-.95.15-.25.3-.2.5-.1.2.1 1.3.6 1.5.7.2.1.35.15.4.25.05.15.05.75-.2 1.45-.25.7-1.45 1.35-2 1.4-.55.1-1.05.25-3.5-.75-2.95-1.2-4.8-4.2-4.95-4.4-.15-.2-1.15-1.55-1.15-2.95 0-1.4.7-2.05.95-2.35Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export function ChevronDownIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
